@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import java.io.ByteArrayInputStream;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -147,6 +148,28 @@ public class Blog {
         this.is_best = n;
         this.image = text;
     }
+
+    public Blog(String titreb, String auteurb, String contenub, String text, boolean n, LocalDate MAX, int Idc) {
+    
+    
+        this.auteur_article = auteurb;
+        this.titre_article = titreb;
+        this.contenu_article = contenub;
+        this.id_categ_a_id = Idc;
+    this.is_best = n ? 1 : 0; // Convertir la valeur booléenne en entier (0 ou 1)
+        this.image = text;
+    }
+
+     public Blog(categorieA categorie, String titre, String auteur, String contenu, String url, int isBest) {
+categorieA categ = new categorieA(); // Remplacez cette ligne avec l'instanciation réelle de votre objet categorieA
+int id_categorie = categorie.getId(); // Utiliser la méthode getId() pour obtenir la valeur int de l'objet categorieA        this.titre = titre;
+        this.auteur_article = auteur;
+        this.contenu_article = contenu;
+        this.image = url;
+        this.is_best = isBest;
+        this.titre_article=titre;
+    }
+    
 
     public List<comment> getComments() {
         return comments;
@@ -312,73 +335,8 @@ public class Blog {
     public List<comment> setCommentaires(List<comment> commentaires) {
         return this.comments;
     }
-    // Setter pour ID
-    public void setID2(int id) {
-        this.ID = id;
-    }
 
-    // Setter pour titre_article
-    public void setTitre_article2(String titre) {
-        this.titre_article = titre;
-    }
 
-    // Setter pour auteur_article
-    public void setAuteur_article2(String auteur) {
-        this.auteur_article = auteur;
-    }
+   }
 
-    // Setter pour contenu_article
-    public void setContenu_article2(String contenu) {
-        this.contenu_article = contenu;
-    }
 
-    // Setter pour id_categ_a_id
-    public void setId_categ_a_id2(int idCateg) {
-        this.id_categ_a_id = idCateg;
-    }
-
-    // Setter pour is_best
-    public void setIs_best2(Integer isBest) {
-        this.is_best = isBest;
-    }
-
-    // Setter pour image
-    public void setImage2(String image) {
-        this.image = image;
-    }
-    // Getter pour ID
-    public int getID2() {
-        return ID;
-    }
-
-    // Getter pour titre_article
-    public String getTitre_article2() {
-        return titre_article;
-    }
-
-    // Getter pour auteur_article
-    public String getAuteur_article2() {
-        return auteur_article;
-    }
-
-    // Getter pour contenu_article
-    public String getContenu_article2() {
-        return contenu_article;
-    }
-
-    // Getter pour id_categ_a_id
-    public int getId_categ_a_id2() {
-        return id_categ_a_id;
-    }
-
-    // Getter pour is_best
-    public Integer getIs_best2() {
-        return is_best;
-    }
-
-    // Getter pour image
-    public String getImage2() {
-        return image;
-    }
-
-}

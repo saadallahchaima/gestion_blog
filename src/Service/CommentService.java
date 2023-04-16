@@ -5,6 +5,7 @@
  */
 package Service;
 
+import Entity.Blog;
 import Entity.comment;
 import Util.MyDB;
 import java.sql.Connection;
@@ -26,9 +27,9 @@ import java.util.logging.Logger;
  * @author saada
  */
 public class CommentService {
-
+    
     Connection cnx;
-
+    
     public CommentService() {
         cnx = MyDB.getInsatnce().getConnection();
     }
@@ -66,7 +67,7 @@ public class CommentService {
             PreparedStatement pstmtArticle = cnx.prepareStatement(queryArticle);
             pstmtArticle.setInt(1, c.getId_article());
             ResultSet rsArticle = pstmtArticle.executeQuery();
-           /* if (!rsArticle.next()) {
+            /* if (!rsArticle.next()) {
                 System.out.println("L'article n'existe pas!");
                 return;
             }*/
@@ -81,7 +82,7 @@ public class CommentService {
             pstmt.setString(5, c.getContenu_c());
             pstmt.setTimestamp(6, new java.sql.Timestamp(new java.util.Date().getTime())); // Utilisation de java.sql.Timestamp pour la date actuelle
             pstmt.setInt(7, c.getApproved());
-
+            
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Un nouveau commentaire a été inséré avec succès !");
@@ -90,10 +91,10 @@ public class CommentService {
             ex.printStackTrace();
         }
     }
-
+    
     public void ModifierCo(comment c) {
         try {
-
+            
             String req = "UPDATE commentaires SET nom_c=?, email_c=?, id_article_id=?, contenu_c=?, date_com=?, approved=? WHERE id=?;";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, c.getNom_c());
@@ -113,7 +114,21 @@ public class CommentService {
             Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void ModifierCommentaire(comment c) {
+        try {
+            
+            String req = "UPDATE commentaires SET  approved=? WHERE id=?;";
+            PreparedStatement ps = cnx.prepareStatement(req);
+           
+            ps.setInt(1, c.getApproved());
+            ps.setInt(2, c.getID());
+            ps.executeUpdate();
+            System.out.println("Commentaire modifié avec succès");
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void SupprimerCo(int ID) {
         try {
             Statement st = cnx.createStatement();
@@ -124,23 +139,23 @@ public class CommentService {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     public List<comment> Recuperer(int idp) {
         List<comment> comments = new ArrayList<>();
         try {
             String req = "select * from commentaires where id_article_id= " + idp;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
-
+            
             while (rs.next()) {
                 comment p = new comment();
                 p.setID(rs.getInt(1));
-
+                
                 p.setNom_c(rs.getString("nom_c"));
                 p.setEmail(rs.getString("email_c"));
                 p.setId_article(idp);
                 p.setContenu_c(rs.getString("contenu_c"));
-
+                
                 p.setDate_com(rs.getTimestamp("date_com"));
                 p.setApproved(rs.getInt("Approved"));
                 comments.add(p);
@@ -154,13 +169,40 @@ public class CommentService {
                 System.out.println("Approuvé : " + comment.getApproved());
                 System.out.println("----------------------");
             }
-
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return comments;
     }
-
+    
+    public List<comment> Recuperer() {
+        List<comment> posts = new ArrayList<>();
+        try {
+            String req = "select * from commentaires ORDER BY date_com DESC";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while (rs.next()) {
+                comment p = new comment();
+                p.setID(rs.getInt(1));
+                
+                p.setNom_c(rs.getString("nom_c"));
+                p.setEmail(rs.getString("email_c"));
+                p.setContenu_c(rs.getString("contenu_c"));
+                p.setId_article(rs.getInt("id_article_id"));
+                p.setDate_com(rs.getTimestamp("date_com"));
+                p.setApproved(rs.getInt("Approved"));
+                posts.add(p);
+            }
+            System.out.print(posts);
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return posts;
+    }
+    
     public comment detail(int id) {
         comment p = new comment();
         try {
@@ -168,18 +210,18 @@ public class CommentService {
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
-
+            
             if (rs.next()) {
                 p.setID(id);
                 p.setContenu_c(rs.getString("contenu_c"));
             }
-
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return p;
     }
-
+    
     public List<comment> getCommentsByArticle(int articleId) {
         try {
             List<comment> comments = new ArrayList<>();
@@ -188,7 +230,7 @@ public class CommentService {
                 PreparedStatement st = cnx.prepareStatement(req);
                 st.setInt(1, articleId);
                 ResultSet rs = st.executeQuery();
-
+                
                 while (rs.next()) {
                     java.sql.Date date_com = rs.getDate("date_com");
                     java.sql.Timestamp timestamp = null;
@@ -198,19 +240,19 @@ public class CommentService {
                     comment comment = new comment(rs.getInt("ID"), rs.getInt("id_article_id"), rs.getString("contenu_c"), timestamp, rs.getString("nom_c"), rs.getString("email_c"), rs.getInt("approved"));
                     comments.add(comment);
                 }
-
+                
             } catch (SQLException e) {
                 System.err.println("Error getting comments by article: " + e.getMessage());
             }
-
+            
             return comments;
-
+            
         } catch (Exception e) {
             System.err.println("An error occurred: " + e.getMessage());
             return null;
         }
     }
-
+    
     public List<comment> getCommentHistory(int articleId) {
         List<comment> comments = getCommentsByArticle(articleId);
         Collections.sort(comments, new Comparator<comment>() {
@@ -223,5 +265,5 @@ public class CommentService {
         });
         return comments;
     }
-
+    
 }

@@ -6,14 +6,26 @@
 package Gui;
 
 import Entity.Blog;
+import Entity.comment;
+import Service.BlogService;
+import Service.CommentService;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -23,15 +35,25 @@ import javafx.scene.image.ImageView;
 public class DetailPostController implements Initializable {
 
     @FXML
-    private ImageView image_article;
-    @FXML
-    private TextArea contenu_c;
-    @FXML
     private Label titre_article;
-    @FXML
     private Label date_a;
-    @FXML
     private Label auteur_article;
+    @FXML
+    private Button modif;
+    @FXML
+    private Button sup;
+    @FXML
+    private TextField tftitre;
+    @FXML
+    private TextField tfauteur;
+    @FXML
+    private TextField tfdate;
+    @FXML
+    private TextArea tfcontenu;
+    @FXML
+    private TextField tfbest;
+    @FXML
+    private TextField tflikes;
 
     /**
      * Initializes the controller class.
@@ -40,32 +62,31 @@ public class DetailPostController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+public DetailPostController() {
+    // Initialize the controller
+}
  public  DetailPostController(Blog blog) {
-      titre_article.setText("Titre Article : " + blog.getTitre_article());
-        auteur_article.setText("Auteur Article : " + blog.getAuteur_article());
-        date_a.setText("Date : " + String.valueOf(blog.getDate()));
-        contenu_c.setText("Contenu : " + blog.getContenu_article());
+ 
 
         
        
  }
  
 public void updateBlogDetails(Blog blog) {
-     titre_article.setText("Titre Article : " + blog.getTitre_article());
-   contenu_c.setText("Contenu: " + blog.getContenu_article());
-   date_a.setText("Date : " + String.valueOf(blog.getDate()));
-
-}
-
-    public DetailPostController(ImageView image_article, TextArea contenu_c, Label titre_article, Label date_a, Label auteur_article) {
-        this.image_article = image_article;
-        this.contenu_c = contenu_c;
-        this.titre_article = titre_article;
-        this.date_a = date_a;
-        this.auteur_article = auteur_article;
+    tftitre.setText("Titre Article : " + blog.getTitre_article());
+    tfcontenu.setText("Contenu: " + blog.getContenu_article());
+   tfdate.setText("Date : " + String.valueOf(blog.getDate()));
+   tfauteur.setText("Auteur: " + blog.getAuteur_article());
+if (blog.getIs_best() == 1) {
+        tfbest.setText("Sélection : isBest");
+    } else {
+        tfbest.setText("Sélection : notBest");
     }
 
+
+
+
+}
   
     @FXML
     private void modifier(ActionEvent event) {
@@ -74,5 +95,39 @@ public void updateBlogDetails(Blog blog) {
     @FXML
     private void supprimer(ActionEvent event) {
     }
+
+    private void commenter(ActionEvent event) {
+          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherCom.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherBlogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+
+
+
+        
+    }
+
+   
+
     
-}
+    
+

@@ -45,3 +45,23 @@ and open the template in the editor.
     -fx-underline:true;
     
 }
+.darck-background{
+    -fx-background-color:#222222;
+} 
+.border-bottom{
+    -fx-border-width: 0 0 2 0;
+      -fx-border-color: #676767;
+    
+}
+.bottom{
+    -fx-background-color: #1C98E4;
+    -fx-background-radius:50px;
+    
+    
+}
+.gradient{
+    -fx-background-color: linear-gradient(to top , #676767, transparent); 
+}
+.shadow{
+    -fx-effect: dropShadow(tree-pass-box, rgb(0,0,0,0.2), 10, 0, 0 ,10);
+} 

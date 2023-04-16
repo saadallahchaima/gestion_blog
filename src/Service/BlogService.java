@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -103,6 +104,11 @@ public class BlogService implements IServiceA<Blog> {
                 insertStatement.executeUpdate();
                 System.out.println("Article ajouté avec succès.");
             } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Un article avec ce titre existe déjà dans la base de données.");
+            alert.showAndWait();
                 System.out.println("Un article avec ce titre existe déjà dans la base de données.");
             }
         } catch (SQLException ex) {
@@ -182,29 +188,28 @@ public class BlogService implements IServiceA<Blog> {
         }
     }
 
-    public void ModifierBlog2(Blog b) {
-        try {
-            String req = "UPDATE articles SET id_categ_a_id=?, titre_article=?, contenu_article=?, auteur_article=?, image_article=?, date_a=?, is_best=? WHERE id=?";
-            PreparedStatement ps = cnx.prepareStatement(req);
+public void ModifierBlog2(Blog b) {
+    try {
+        String req = "UPDATE articles SET id_categ_a_id=?, titre_article=?, contenu_article=?, auteur_article=?, image_article=?, date_a=?, is_best=? WHERE id=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
 
-            // Vérifier si le type_a est différent de l'ancien
-//       ps.setInt(1, b.getId_categ_a_id());
-            ps.setString(1, b.getTitre_article());
-            ps.setString(2, b.getContenu_article());
-            ps.setString(3, b.getAuteur_article());
-            ps.setString(4, b.getImage());
-            ps.setDate(5, java.sql.Date.valueOf(java.time.LocalDate.now()));
-            // ps.setInt(7, b.getIs_best());
-            ps.setInt(6, b.getID());
+        // Vérifier si le type_a est différent de l'ancien
+        ps.setInt(1, b.getId_categ_a_id());
+        ps.setString(2, b.getTitre_article());
+        ps.setString(3, b.getContenu_article());
+        ps.setString(4, b.getAuteur_article());
+        ps.setString(5, b.getImage());
+        ps.setDate(6, java.sql.Date.valueOf(java.time.LocalDate.now()));
+        ps.setInt(7, b.getIs_best());
+        ps.setInt(8, b.getID());
 
-            ps.executeUpdate();
-            System.out.println("Article modifié avec succès");
+        ps.executeUpdate();
+        System.out.println("Article modifié avec succès");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(CategorieService.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    } catch (SQLException ex) {
+        Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
     }
-
+}
 
     /*public List<comment> getComments(int id) {
     List<comment> comments = new ArrayList<>();
@@ -230,7 +235,7 @@ public class BlogService implements IServiceA<Blog> {
     }
     return comments; 
 }*/
- /* public List<comment> getComments(int id) {
+ public List<comment> getComments(int id) {
     List<comment> comments = new ArrayList<>();
     try {
         String req = "SELECT * FROM commentaires WHERE id_article_id = " + id;
@@ -244,8 +249,9 @@ public class BlogService implements IServiceA<Blog> {
             c.setEmail(rs.getString("email_c"));
               c.setID(rs.getInt("id_article"));
             c.setContenu_c(rs.getString("contenu_c"));
-            c.setDate_com(rs.getDate("date_com"));
-            c.setApproved(rs.getInt("approved"));
+Timestamp timestamp = rs.getTimestamp("date_com");
+c.setDate_com(timestamp);
+c.setApproved(rs.getInt("approved"));
             comments.add(c);
         }
         System.out.println("Comments retrieved: " + comments.size());
@@ -255,7 +261,7 @@ public class BlogService implements IServiceA<Blog> {
     }
     return comments; 
 }
-     */
+     
     @Override
     public List<comment> getCommentsWithArticleTitles() {
         List<comment> comments = new ArrayList<>();
@@ -725,4 +731,6 @@ public class BlogService implements IServiceA<Blog> {
         }
         return id;
     }
+
+
 }

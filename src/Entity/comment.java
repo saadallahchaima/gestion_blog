@@ -31,23 +31,17 @@ public class comment {
 
     public comment(int ID, String nom_c, String email, int id_article, String contenu_c, Timestamp date_com, int approved) {
         this.ID = ID;
-        if (estValideNom(nom_c)) {
+       
             this.nom_c = nom_c;
-        } else {
-            throw new IllegalArgumentException("Le nom doit être composé uniquement de caractères.");
-        }
-        if (estValideEmail(email)) {
+      
+       
             this.email = email;
-        } else {
-            throw new IllegalArgumentException("L'email doit être valide.");
-        }
+       
 
         this.id_article = id_article;
-        if (estValideCommentaire((contenu_c))) {
+       
             this.contenu_c = contenu_c;
-        } else {
-            throw new IllegalArgumentException("le contenu du commentaire doit etre superieur a 80");
-        }
+       
 
         this.date_com = date_com;
         this.approved = approved;
@@ -55,44 +49,32 @@ public class comment {
 
     public comment(int ID, String nom_c, String email, int id_article, String contenu_c, int approved, Blog article) {
         this.ID = ID;
-        if (estValideNom(nom_c)) {
+      
             this.nom_c = nom_c;
-        } else {
-            throw new IllegalArgumentException("Le nom doit être composé uniquement de caractères.");
-        }
-        if (estValideEmail(email)) {
+       
+        
             this.email = email;
-        } else {
-            throw new IllegalArgumentException("L'email doit être valide.");
-        }
+       
         this.id_article = id_article;
-        if (estValideCommentaire((contenu_c))) {
+        
             this.contenu_c = contenu_c;
-        } else {
-            throw new IllegalArgumentException("le contenu du commentaire doit etre superieur a 80");
-        }
+      
         this.approved = approved;
         this.article = article;
     }
 
     public comment(int ID, String nom_c, String email, int id_article, String contenu_c, int approved) {
         this.ID = ID;
-        if (estValideNom(nom_c)) {
+       
             this.nom_c = nom_c;
-        } else {
-            throw new IllegalArgumentException("Le nom doit être composé uniquement de caractères.");
-        }
-        if (estValideEmail(email)) {
+       
+        
             this.email = email;
-        } else {
-            throw new IllegalArgumentException("L'email doit être valide.");
-        }
+       
         this.id_article = id_article;
-        if (estValideCommentaire((contenu_c))) {
+      
             this.contenu_c = contenu_c;
-        } else {
-            throw new IllegalArgumentException("le contenu du commentaire doit etre superieur a 80");
-        }
+       
         this.approved = approved;
     }
 
@@ -103,46 +85,34 @@ public class comment {
 
         this.ID = ID;
 
-        if (estValideNom(nom_c)) {
+      
             this.nom_c = nom_c;
-        } else {
-            throw new IllegalArgumentException("Le nom doit être composé uniquement de caractères.");
-        }
-        if (estValideEmail(email)) {
+       
+        
             this.email = email;
-        } else {
-            throw new IllegalArgumentException("L'email doit être valide.");
-        }
+       
 
         this.id_article = id_article;
 
-        if (estValideCommentaire((contenu_c))) {
+       
             this.contenu_c = contenu_c;
-        } else {
-            throw new IllegalArgumentException("le contenu du commentaire doit etre superieur a 80");
-        }
+       
 
         this.approved = approved;
     }
 
     public comment(int ID, String nom_c, String email, int id_article, String contenu_c, Timestamp date_com, int approved, Blog article) {
         this.ID = ID;
-        if (estValideNom(nom_c)) {
+      
             this.nom_c = nom_c;
-        } else {
-            throw new IllegalArgumentException("Le nom doit être composé uniquement de caractères.");
-        }
-        if (estValideEmail(email)) {
+      
+       
             this.email = email;
-        } else {
-            throw new IllegalArgumentException("L'email doit être valide.");
-        }
+       
         this.id_article = id_article;
-        if (estValideCommentaire((contenu_c))) {
+      
             this.contenu_c = contenu_c;
-        } else {
-            throw new IllegalArgumentException("le contenu du commentaire doit etre superieur a 80");
-        }
+       
         this.date_com = date_com;
         this.approved = approved;
         this.article = article;
@@ -150,23 +120,16 @@ public class comment {
 
     public comment(int ID, int id_article, String nom_c, Timestamp timestamp, String email, String contenu_c, int approved) {
         this.ID = ID;
-        if (estValideNom(nom_c)) {
+       
             this.nom_c = nom_c;
-        } else {
-            throw new IllegalArgumentException("Le nom doit être composé uniquement de caractères.");
-        }
-        if (estValideEmail(email)) {
+       
             this.email = email;
-        } else {
-            throw new IllegalArgumentException("L'email doit être valide.");
-        }
+       
         this.id_article = id_article;
         this.date_com = timestamp;
-        if (estValideCommentaire((contenu_c))) {
+        
             this.contenu_c = contenu_c;
-        } else {
-            throw new IllegalArgumentException("le contenu du commentaire doit etre superieur a 80");
-        }
+       
         this.approved = approved;
     }
 

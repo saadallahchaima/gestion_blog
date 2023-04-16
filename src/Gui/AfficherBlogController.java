@@ -23,8 +23,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -37,6 +39,10 @@ public class AfficherBlogController implements Initializable {
     @FXML
     private ListView<Blog> listeB;
     Preferences prefs = Preferences.userNodeForPackage(AfficherBlogController.class);
+    @FXML
+    private VBox chosenFruitCard;
+    @FXML
+    private Label lbcontenu;
 
     /**
      * Initializes the controller class.
@@ -102,5 +108,32 @@ public class AfficherBlogController implements Initializable {
         }
 
     }
+
+    @FXML
+    private void AjouterC(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CategorieAXML.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherBlogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+       @FXML
+    private void listeCom(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherCom.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherBlogController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
 
 }

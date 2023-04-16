@@ -1,37 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.AfficherBlogController">
-   <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="754.0" prefWidth="1169.0" stylesheets="@Stylee1.css">
+    <children>
+        <AnchorPane id="AnchorPane" layoutY="10.0" prefHeight="754.0" prefWidth="1179.0" stylesheets="@Stylee1.css">
+            <children>
+                <ListView fx:id="listeB" layoutX="411.0" layoutY="84.0" onMouseClicked="#modifierBlog" prefHeight="671.0" prefWidth="765.0" stylesheets="@Stylee1.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="411.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="84.0" />
+                <Label layoutX="617.0" layoutY="30.0" prefHeight="40.0" prefWidth="353.0" text="La Liste des Posts" textAlignment="CENTER" textFill="#dd6262">
+                    <font>
+                        <Font name="System Bold Italic" size="21.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="200.0" stylesheets="@style.css" />
+      <VBox layoutX="-1.0" prefHeight="830.0" prefWidth="410.0" styleClass="right-bar" stylesheets="@style.css">
          <children>
-            <ListView fx:id="listeB" layoutX="103.0" layoutY="84.0" onMouseClicked="#modifierBlog" prefHeight="654.0" prefWidth="927.0" stylesheets="@Stylee1.css" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="84.0" />
-            <TextField layoutX="923.0" layoutY="44.0" prefHeight="31.0" prefWidth="201.0" promptText="Rechercher..." AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="44.0" />
-            <Button layoutX="40.0" layoutY="33.0" mnemonicParsing="false" onAction="#AjouterBlog" prefHeight="29.0" prefWidth="127.0" stylesheets="@Stylee1.css" text="Ajouter Post" textOverrun="CLIP" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="33.0">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
-            <Label layoutX="434.0" layoutY="27.0" prefHeight="40.0" prefWidth="353.0" text="La Liste des Posts" textAlignment="CENTER" textFill="#d05b5b">
-               <font>
-                  <Font name="System Bold Italic" size="21.0" />
-               </font>
-            </Label>
-            <Button layoutX="1090.0" layoutY="32.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" />
-            <ImageView fitHeight="55.0" fitWidth="61.0" layoutX="1091.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../superMarket/image/icons8-search-64.png" />
-               </image>
-            </ImageView>
+            <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0" stylesheets="@style.css">
+               <children>
+                  <Label prefHeight="49.0" prefWidth="128.0" text="Posts" textFill="#878787">
+                     <font>
+                        <Font name="Cambria Bold" size="40.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="49.0" prefWidth="89.0" text="Blog" textFill="#878787">
+                     <font>
+                        <Font name="Cambria" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@../../../Fruits-Market-master/FruitMarket/src/values/style.css" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+               <children>
+                  <TextField prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@style.css">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Cambria" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" stylesheets="@../../../Fruits-Market-master/FruitMarket/src/values/style.css" text="Search" textFill="WHITE" />
+               </children>
+               <styleClass>
+                  <String fx:value="search-box" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </HBox>
+            <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="535.0" prefWidth="100.0" styleClass="chosen-fruit-card" stylesheets="@style.css">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+               <children>
+                      <Button mnemonicParsing="false" onAction="#AjouterBlog" prefHeight="29.0" prefWidth="168.0" styleClass="add-btn" text="Ajouter Post" textOverrun="CLIP">
+                          <font>
+                              <Font name="System Bold" size="13.0" />
+                          </font>
+                     <stylesheets>
+                        <URL value="@Stylee1.css" />
+                        <URL value="@design.css" />
+                     </stylesheets>
+                      </Button>
+                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="335.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                     <children>
+                            <Button mnemonicParsing="false" onAction="#AjouterC" prefHeight="31.0" prefWidth="166.0" styleClass="add-btn" stylesheets="@design.css" text="Ajouter Categorie" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                     <children>
+                        <Label fx:id="lbcontenu" />
+                        <Button mnemonicParsing="false" onAction="#listeCom" stylesheets="@design.css" text="liste des commentaires" textFill="#ab6060">
+                           <styleClass>
+                              <String fx:value="button3" />
+                              <String fx:value="button2" />
+                              <String fx:value="add-btn" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Pane prefHeight="124.0" prefWidth="410.0" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
          </children>
-      </AnchorPane>
-   </children>
+      </VBox>
+    </children>
 </AnchorPane>
