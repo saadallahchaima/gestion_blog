@@ -11,6 +11,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1244.0" stylesheets="@Stylee1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.ArticleController">
@@ -106,8 +108,28 @@
          </font>
       </CheckBox>
       <Button fx:id="reset" layoutX="602.0" layoutY="747.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="140.0" text="clear" />
-      <ComboBox fx:id="ExporterListe" layoutX="990.0" layoutY="697.0" onAction="#ExporterListe" prefWidth="150.0" promptText="PDF/Excel/Imprimer" />
-      <ComboBox fx:id="Trie" layoutX="860.0" layoutY="93.0" onAction="#Trie" prefHeight="25.0" prefWidth="150.0" promptText="Dispo/Non/Biento" />
-      <TextField fx:id="Recherche" layoutX="1033.0" layoutY="88.0" onKeyReleased="#Recherche" prefHeight="25.0" prefWidth="211.0" promptText="Recherche" />
+      <HBox alignment="CENTER" layoutX="935.0" layoutY="20.0" prefHeight="100.0" prefWidth="399.0" styleClass="shopping-online-card" stylesheets="@style.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
+               <children>
+                  <Label prefHeight="29.0" prefWidth="190.0" text="recherche et Trie" textFill="#878787">
+                     <font>
+                        <Font name="Cambria Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="20.0" prefWidth="207.0" textFill="#878787">
+                     <font>
+                        <Font name="Cambria" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="recherche" onKeyPressed="#Recherche" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@style.css">
+                     <font>
+                        <Font name="Cambria" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -28,6 +28,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -136,4 +137,51 @@ public class AfficherBlogController implements Initializable {
             Logger.getLogger(AfficherBlogController.class.getName()).log(Level.SEVERE, null, ex);
         }}
 
+    @FXML
+    private void StatLikes(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("stat.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherBlogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void StatCom(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("statCom.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherBlogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void populatedArticle(ActionEvent event) {
+        BlogService b =new BlogService();
+        int limit = 10;
+        List<Blog> articles = b.getArticlesPopulairesParCommentaires(limit); // Remplacez 'limit' par la valeur souhaitée pour limiter le nombre d'articles retournés
+
+    // Créer une liste de chaînes pour stocker les titres des articles
+   
+    
+    
+    // Appliquer la liste de titres à la ListView
+    ObservableList<Blog> observableArticles = FXCollections.observableArrayList(articles);
+    
+    // Appliquer la liste observable à la ListView
+    listeB.setItems(observableArticles);
+    
+       
+    }
+  
 }

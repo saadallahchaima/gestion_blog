@@ -70,6 +70,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import java.lang.reflect.Field;
+import java.util.Comparator;
 
 /**
  * FXML Controller class
@@ -153,11 +155,10 @@ public class ArticleController implements Initializable {
     @FXML
     private Button reset;
     @FXML
-    private ComboBox<?> ExporterListe;
-    @FXML
-    private ComboBox<?> Trie;
-    @FXML
-    private TextField Recherche;
+    private TextField recherche;
+    private ObservableList<Blog> articlesObservableList = FXCollections.observableArrayList(); // Liste observable pour les articles
+    private ComboBox<String> propertyComboBox;
+    private ComboBox<String> sortOrderComboBox;
 
     /**
      * Initializes the controller class.
@@ -228,6 +229,7 @@ public class ArticleController implements Initializable {
         // Charger les données dans le TableView
         List<Blog> listePosts = loadPostsFromDatabase(); // Remplacer cette méthode par votre logique pour charger les données des posts depuis la base de données
         TablePosts.setItems(FXCollections.observableArrayList(listePosts));
+
 
     }
 
@@ -518,16 +520,48 @@ private void Menu(ActionEvent event) throws IOException {
     private void reset(ActionEvent event) {
     }
 
-    @FXML
-    private void ExporterListe(ActionEvent event) {
-    }
 
-    @FXML
     private void Trie(ActionEvent event) {
-    }
+          String propertyName = propertyComboBox.getValue(); // Récupérer la propriété de tri sélectionnée
+        String sortOrder = sortOrderComboBox.getValue(); // Récupérer l'ordre de tri sélectionné
+        String motCle =recherche.getText(); // Récupérer le mot-clé de recherche depuis le champ de texte
 
+  
+    
+    // Utiliser un stream pour trier les articles en fonction de la propriété et de l'ordre de tri spécifiés
+    Comparator<Blog> comparator = (b1, b2) -> {
+        try {
+            Field field = Blog.class.getDeclaredField(propertyName);
+            field.setAccessible(true);
+            Comparable propValue1 = (Comparable) field.get(b1);
+            Comparable propValue2 = (Comparable) field.get(b2);
+            return sortOrder.equals("ASC") ? propValue1.compareTo(propValue2) : propValue2.compareTo(propValue1);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            System.err.println("Error sorting articles by property: " + ex.getMessage());
+            return 0;
+        }
+    };
+
+    articlesObservableList.sort(comparator);
+       
+    }
+      // Méthode pour récupérer tous les articles triés en fonction de la propriété spécifiée
+  
     @FXML
     private void Recherche(KeyEvent event) {
+        Blog bb=new Blog();
+        String motCle = recherche.getText(); 
+        BlogService b=new BlogService();
+    List<Blog> resultats = b.recherche(motCle); 
+   
+        
+        
+           TablePosts.setItems(FXCollections.observableArrayList(resultats));
+          
+
+        
+        
     }
 
+   
 }

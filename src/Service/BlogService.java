@@ -722,7 +722,7 @@ c.setApproved(rs.getInt("approved"));
 
     public int chercherbest(String best) throws SQLException {
         int id = 0;
-        String requete = "SELECT id FROMBlog WHERE best = ?";
+        String requete = "SELECT id FROM Blog WHERE best = ?";
         PreparedStatement pst = cnx.prepareStatement(requete);
         pst.setString(1, best);
         ResultSet rs = pst.executeQuery();

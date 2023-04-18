@@ -4,31 +4,30 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/BlogCell.java</file>
-            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/ComCell.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/style.css</file>
+            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/StatComController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Entity/Blog.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/DetailsFrontController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/DetailsFront.fxml</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Entity/comment.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/PostFrontController.java</file>
-            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/CommentDetailsController.java</file>
+            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/BlogCellFront.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/ArticleController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/CategorieAXMLController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Util/MyDB.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/design.css</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Service/CategorieService.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/test_desck/NewFXMain.java</file>
-            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/DetailPost.fxml</file>
+            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/StatController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/PostsController.java</file>
-            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/PostFront.fxml</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Service/CommentService.java</file>
+            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/CommentaireController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/ArticleFrontController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/DetailPostController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/test_desck/NewFXMain1.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/AfficherBlogController.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/test_desck/Test_desck.java</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Service/BlogService.java</file>
-            <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/Posts.fxml</file>
             <file>file:/C:/Users/saada/OneDrive/Bureau/test_desck/src/Gui/AfficherComController.java</file>
         </group>
     </open-files>

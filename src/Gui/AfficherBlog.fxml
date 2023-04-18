@@ -6,7 +6,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -18,9 +21,9 @@
         <AnchorPane id="AnchorPane" layoutY="10.0" prefHeight="754.0" prefWidth="1179.0" stylesheets="@Stylee1.css">
             <children>
                 <ListView fx:id="listeB" layoutX="411.0" layoutY="84.0" onMouseClicked="#modifierBlog" prefHeight="671.0" prefWidth="765.0" stylesheets="@Stylee1.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="411.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="84.0" />
-                <Label layoutX="617.0" layoutY="30.0" prefHeight="40.0" prefWidth="353.0" text="La Liste des Posts" textAlignment="CENTER" textFill="#dd6262">
+                <Label layoutX="554.0" layoutY="14.0" prefHeight="64.0" prefWidth="410.0" text="La Liste des Posts" textAlignment="CENTER" textFill="#dd6262">
                     <font>
-                        <Font name="System Bold Italic" size="21.0" />
+                        <Font name="System Bold Italic" size="43.0" />
                     </font>
                 </Label>
             </children>
@@ -30,16 +33,21 @@
          <children>
             <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0" stylesheets="@style.css">
                <children>
-                  <Label prefHeight="49.0" prefWidth="128.0" text="Posts" textFill="#878787">
+                  <Label prefHeight="49.0" prefWidth="128.0" text="Blog" textFill="#878787">
                      <font>
                         <Font name="Cambria Bold" size="40.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="49.0" prefWidth="89.0" text="Blog" textFill="#878787">
+                  <Label prefHeight="49.0" prefWidth="89.0" textFill="#878787">
                      <font>
                         <Font name="Cambria" size="40.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="82.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../superMarket/image/1809216.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@../../../Fruits-Market-master/FruitMarket/src/values/style.css" VBox.vgrow="NEVER">
@@ -68,21 +76,28 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
                <children>
-                      <Button mnemonicParsing="false" onAction="#AjouterBlog" prefHeight="29.0" prefWidth="168.0" styleClass="add-btn" text="Ajouter Post" textOverrun="CLIP">
-                          <font>
-                              <Font name="System Bold" size="13.0" />
-                          </font>
-                     <stylesheets>
-                        <URL value="@Stylee1.css" />
-                        <URL value="@design.css" />
-                     </stylesheets>
-                      </Button>
+                  <HBox prefHeight="52.0" prefWidth="269.0">
+                     <children>
+                            <Button mnemonicParsing="false" onAction="#AjouterBlog" prefHeight="29.0" prefWidth="168.0" styleClass="add-btn" text="Ajouter Post" textOverrun="CLIP" translateX="70.0" translateY="20.0">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                           <stylesheets>
+                              <URL value="@Stylee1.css" />
+                              <URL value="@design.css" />
+                           </stylesheets>
+                            </Button>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="33.0" prefWidth="335.0">
                      <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
-                            <Button mnemonicParsing="false" onAction="#AjouterC" prefHeight="31.0" prefWidth="166.0" styleClass="add-btn" stylesheets="@design.css" text="Ajouter Categorie" />
+                            <Button mnemonicParsing="false" onAction="#AjouterC" prefHeight="31.0" prefWidth="166.0" styleClass="add-btn" stylesheets="@design.css" text="Ajouter Categorie">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
@@ -97,6 +112,34 @@
                         </Button>
                      </children>
                   </HBox>
+                  <HBox prefHeight="50.0" prefWidth="235.0" stylesheets="@style.css" />
+                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="335.0">
+                     <children>
+                        <Separator prefHeight="0.0" prefWidth="118.0" />
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="86.0" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="63.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+                           <image>
+                              <Image url="@../superMarket/image/3993840_gesture_like_thumbs%20up_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Separator prefHeight="0.0" prefWidth="118.0" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#StatLikes" prefHeight="31.0" prefWidth="182.0" styleClass="add-btn" stylesheets="@Stylee1.css" text="Stat des Likes">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font>
+                  </Button>
+                  <HBox prefHeight="52.0" prefWidth="275.0" translateY="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#StatCom" prefHeight="31.0" prefWidth="178.0" styleClass="add-btn" stylesheets="@style.css" text="Stat des Commentaires" translateX="65.0" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#populatedArticle" prefHeight="31.0" prefWidth="180.0" styleClass="add-btn" stylesheets="@style.css" text="Articles Populaires" translateY="20.0" />
                </children>
             </VBox>
             <Pane prefHeight="124.0" prefWidth="410.0" stylesheets="@style.css" VBox.vgrow="ALWAYS" />

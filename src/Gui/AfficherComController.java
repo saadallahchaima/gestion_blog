@@ -18,6 +18,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static java.time.zone.ZoneRulesProvider.refresh;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,12 +35,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -71,6 +76,16 @@ public class AfficherComController implements Initializable {
     private TableColumn<comment, Integer> colDate1;
     @FXML
     private TableColumn<comment, Integer> colArticle;
+    @FXML
+    private CheckBox checkapproved;
+    @FXML
+    private Label lbnom;
+    @FXML
+    private Label lbemail;
+    @FXML
+    private Label lbdate;
+    @FXML
+    private Label lbcom;
 
     /**
      * Initializes the controller class.
@@ -149,15 +164,26 @@ colArticle.setCellFactory(column -> {
    
    
     @FXML
-    private void back(ActionEvent event) {
+    private void back(ActionEvent event) throws IOException {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    
+    // Masquer la fenêtre actuelle
+    currentStage.hide();
+    
+    // Charger la nouvelle fenêtre "AfficherBlog.fxml"
+    Parent root = FXMLLoader.load(getClass().getResource("AfficherBlog.fxml"));
+    Scene scene = new Scene(root);
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.show();
     }
 
     @FXML
     private void ListeCom(MouseEvent event) {
           comment t = TableCom.getSelectionModel().getSelectedItem();
-             
-     
-            try {
+          
+          
+          /* try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CommentDetails.fxml"));
             Parent root = loader.load();
               CommentDetailsController controller = loader.getController();
@@ -168,8 +194,14 @@ colArticle.setCellFactory(column -> {
             stage.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(AfficherBlogController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
+        }*/
+            lbnom.setText(t.getNom_c());
+        lbemail.setText(t.getEmail());
+        lbdate.setText(t.getDate_com().toString());
+        lbcom.setText(t.getContenu_c());
+        checkapproved.setSelected(t.getApproved() == 1);
+
+   
     }
   
  
@@ -183,11 +215,35 @@ private List<comment> loadcommentsFromDatabase() {
         List<comment> coco = blogService.Recuperer();
         return coco;
 }
+
+    @FXML
+    private void updatecom(ActionEvent event) {
+         CommentService cc = new CommentService();
+    comment c = new comment();
+      c =TableCom.getSelectionModel().getSelectedItem();
+       c.setID(TableCom.getSelectionModel().getSelectedItem().getID());
+    c.setNom_c(lbnom.getText());
+    c.setEmail(lbemail.getText());
+    c.setDate_com(java.sql.Timestamp.valueOf(lbdate.getText()));
+    c.setContenu_c(lbcom.getText());
+    
+    // Mettre à jour l'état "approved" du commentaire en fonction de l'état de la case à cocher
+    if (checkapproved.isSelected()) {
+        c.setApproved(1);
+    } else {
+        c.setApproved(0);
+    }
+    
+    // Appeler la méthode de service pour mettre à jour le commentaire dans la base de données
+    cc.ModifierCo(c);
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("commentaire modifié avec succes");
+            alert.showAndWait();
+          TableCom.refresh();
+    }
 }
 
-      
 
-   
 
  
 

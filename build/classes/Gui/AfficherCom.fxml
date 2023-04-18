@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="728.0" prefWidth="951.0" styleClass="column-header-background" stylesheets="@Stylee1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.AfficherComController">
+<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1409.0" styleClass="column-header-background" stylesheets="@Stylee1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.AfficherComController">
    <children>
-      <Label layoutX="234.0" layoutY="41.0" prefHeight="35.0" prefWidth="303.0" stylesheets="@Stylee1.css" text="Liste des Commentaires" textFill="#cd7878">
+      <Label layoutX="479.0" layoutY="41.0" prefHeight="35.0" prefWidth="303.0" stylesheets="@Stylee1.css" text="Liste des Commentaires" textFill="#cd7878">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="99.0" fitWidth="180.0" layoutX="671.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="99.0" fitWidth="180.0" layoutX="1218.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../superMarket/image/icons8-communicate-skin-type-7-94.png" />
          </image>
@@ -28,7 +30,7 @@
             <Image url="@../superMarket/image/precedent.png" />
          </image>
       </ImageView>
-      <TableView fx:id="TableCom" editable="true" layoutX="-3.0" layoutY="155.0" onMouseClicked="#ListeCom" prefHeight="481.0" prefWidth="951.0" stylesheets="@Stylee1.css" tableMenuButtonVisible="true">
+      <TableView fx:id="TableCom" editable="true" layoutX="26.0" layoutY="144.0" onMouseClicked="#ListeCom" prefHeight="481.0" prefWidth="750.0" stylesheets="@Stylee1.css" tableMenuButtonVisible="true">
          <columns>
             <TableColumn fx:id="VID" prefWidth="44.0" text="ID" visible="false" />
             <TableColumn fx:id="commentaire" prefWidth="172.0" text="Commentaire" />
@@ -42,5 +44,56 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <AnchorPane id="AnchorPane" layoutX="782.0" layoutY="191.0" prefHeight="342.0" prefWidth="598.0">
+         <children>
+            <Label layoutX="26.0" layoutY="78.0" text="Le nom de l'utilisateur" textFill="#d77070">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="150.0" prefHeight="21.0" prefWidth="136.0" text="l'email" textFill="#c36b6b">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="252.0" layoutY="78.0" prefHeight="21.0" prefWidth="0.0" />
+            <Label layoutX="26.0" layoutY="226.0" text="date de commentaire" textFill="#c37070">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="283.0" text="Le commentaire:" textFill="#c97474">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="378.0" layoutY="151.0" text="Approuvé" />
+            <CheckBox fx:id="checkapproved" layoutX="466.0" layoutY="151.0" mnemonicParsing="false" text="approved" />
+            <Button layoutX="484.0" layoutY="185.0" mnemonicParsing="false" onAction="#updatecom" prefHeight="31.0" prefWidth="99.0" />
+            <ImageView fitHeight="31.0" fitWidth="39.0" layoutX="519.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../superMarket/image/icons8-approval-94.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="-2.0" layoutY="-2.0" prefHeight="70.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="34.0" prefWidth="281.0" text="Detail du commentaire" textFill="#e092c4">
+                     <font>
+                        <Font name="System Bold Italic" size="23.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="60.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" translateX="250.0">
+                     <image>
+                        <Image url="@../superMarket/image/icons8-edit-chat-history-94.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label fx:id="lbnom" layoutX="252.0" layoutY="81.0" prefHeight="21.0" prefWidth="268.0" />
+            <Label fx:id="lbemail" layoutX="114.0" layoutY="151.0" prefHeight="21.0" prefWidth="148.0" />
+            <Label fx:id="lbdate" layoutX="213.0" layoutY="229.0" prefHeight="21.0" prefWidth="238.0" />
+            <Label fx:id="lbcom" layoutX="206.0" layoutY="266.0" prefHeight="108.0" prefWidth="374.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

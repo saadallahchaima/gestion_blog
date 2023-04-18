@@ -37,11 +37,9 @@ public class Blog {
     public Blog(int ID, int id_categ_a_id, String titre_article, String contenu_article, String auteur_article, String image, Date date, boolean is_best) {
         this.ID = ID;
         this.id_categ_a_id = id_categ_a_id;
-        if (commenceParMajuscule(titre_article)) {
+      
             this.titre_article = titre_article;
-        } else {
-            throw new IllegalArgumentException("Letitre doit commencer par une majuscule.");
-        }
+      
         this.contenu_article = contenu_article;
         this.auteur_article = auteur_article;
         this.image = image;
@@ -55,11 +53,9 @@ public class Blog {
     public Blog(int ID, int id_categ_a_id, String titre_article, String contenu_article, String auteur_article, String image, boolean is_best) {
         this.ID = ID;
         this.id_categ_a_id = id_categ_a_id;
-        if (commenceParMajuscule(titre_article)) {
+       
             this.titre_article = titre_article;
-        } else {
-            throw new IllegalArgumentException("Letitre doit commencer par une majuscule.");
-        }
+       
         this.contenu_article = contenu_article;
         this.auteur_article = auteur_article;
         this.image = image;
@@ -69,11 +65,9 @@ public class Blog {
     public Blog(int ID, int id_categ_a_id, String titre_article, String contenu_article, String auteur_article, String image, LocalDate date, int is_best) {
         this.ID = ID;
         this.id_categ_a_id = id_categ_a_id;
-        if (commenceParMajuscule(titre_article)) {
+      
             this.titre_article = titre_article;
-        } else {
-            throw new IllegalArgumentException("Letitre doit commencer par une majuscule.");
-        }
+      
         this.contenu_article = contenu_article;
         this.auteur_article = auteur_article;
         this.image = image;

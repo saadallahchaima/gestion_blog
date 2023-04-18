@@ -60,37 +60,38 @@ public class CommentService {
         }
     }
      */
-    public void AjouterCo(comment c) {
-        try {
-            // Vérifier si l'article existe
-            String queryArticle = "SELECT * FROM articles WHERE id = ?";
-            PreparedStatement pstmtArticle = cnx.prepareStatement(queryArticle);
-            pstmtArticle.setInt(1, c.getId_article());
-            ResultSet rsArticle = pstmtArticle.executeQuery();
-            /* if (!rsArticle.next()) {
-                System.out.println("L'article n'existe pas!");
-                return;
-            }*/
-
-            // Insérer le commentaire
-            String query = "INSERT INTO commentaires (id, nom_c, email_c, id_article_id, contenu_c, date_com, approved) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = cnx.prepareStatement(query);
-            pstmt.setInt(1, c.getID());
-            pstmt.setString(2, c.getNom_c());
-            pstmt.setString(3, c.getEmail());
-            pstmt.setInt(4, c.getId_article());
-            pstmt.setString(5, c.getContenu_c());
-            pstmt.setTimestamp(6, new java.sql.Timestamp(new java.util.Date().getTime())); // Utilisation de java.sql.Timestamp pour la date actuelle
-            pstmt.setInt(7, c.getApproved());
-            
-            int rowsInserted = pstmt.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Un nouveau commentaire a été inséré avec succès !");
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+ public void AjouterCo(comment c) {
+    try {
+        // Vérifier si l'article existe
+        String queryArticle = "SELECT * FROM articles WHERE id = ?";
+        PreparedStatement pstmtArticle = cnx.prepareStatement(queryArticle);
+        pstmtArticle.setInt(1, c.getId_article());
+        ResultSet rsArticle = pstmtArticle.executeQuery();
+        if (!rsArticle.next()) {
+            System.out.println("L'article n'existe pas !");
+            return;
         }
+
+        // Insérer le commentaire
+        String query = "INSERT INTO commentaires (id, nom_c, email_c, id_article_id, contenu_c, date_com, approved) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = cnx.prepareStatement(query);
+        pstmt.setInt(1, c.getID());
+        pstmt.setString(2, c.getNom_c());
+        pstmt.setString(3, c.getEmail());
+        pstmt.setInt(4, c.getId_article());
+        pstmt.setString(5, c.getContenu_c());
+        pstmt.setTimestamp(6, new java.sql.Timestamp(new java.util.Date().getTime()));
+        pstmt.setInt(7, c.getApproved());
+
+        int rowsInserted = pstmt.executeUpdate();
+        if (rowsInserted > 0) {
+            System.out.println("Un nouveau commentaire a été inséré avec succès !");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+}
+
     
     public void ModifierCo(comment c) {
         try {

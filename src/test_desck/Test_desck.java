@@ -52,7 +52,7 @@ public class Test_desck {
             CommentService p = new CommentService();
             CategorieService pp = new CategorieService();
             //ps.ModifierBlog2(v);
-            p.Recuperer();
+            //p.Recuperer();
             //p.ModifierCo(chaima);
             // PostLike like = new PostLike(1,42,
            //ps.likes(4);
@@ -62,8 +62,8 @@ public class Test_desck {
             //System.out.println(ps.recherche("Yoga"));
             //ps.ajouterlike(3,"ayedi.malek@esprit.tn");
             //ps.afficherAuteursPlusActifs();
-            //ps.getLikeStats(cnx);
-            //ps.getCommentStats(cnx);
+            ps.getLikeStats(cnx);
+            ps.getCommentStats(cnx);
 
             // System.out.println(  p.detail(1));
             //System.out.println( ps.getCommentsWithArticleTitles());
